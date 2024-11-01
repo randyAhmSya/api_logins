@@ -15,7 +15,7 @@ use App\Http\Controllers\Api\AuthController;
 |
 */
 
-Route::middleware('auth:sanctum', 'role:admin')->get('/admin', function () {
+Route::middleware(['auth:sanctum', 'role:admin'])->get('/admin', function () {
     return response()->json(['message' => 'Welcome Admin!']);
 });
 Route::post('/register', [AuthController::class, 'register']);
