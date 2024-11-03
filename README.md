@@ -88,6 +88,7 @@ route api select all
         }
     ]
 }
+![alt text](image-20.png)
 <h3>hasil dari memanggil all users</h3>
 
 
