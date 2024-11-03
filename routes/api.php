@@ -18,5 +18,16 @@ use App\Http\Controllers\Api\AuthController;
 Route::middleware(['auth:sanctum', 'role:admin'])->get('/admin', function () {
     return response()->json(['message' => 'Welcome Admin!']);
 });
+Route::middleware(['auth:sanctum', 'role:user'])->get('/user', function () {
+    return response()->json(['message' => 'Welcome User!']);
+});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::put('/profile', [AuthController::class, 'updateProfile']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+    // Admin routes
+    Route::delete('/users/{id}', [AuthController::class, 'deleteUser']);
+    Route::get('/users', [AuthController::class, 'getAllUsers']);
+});
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
